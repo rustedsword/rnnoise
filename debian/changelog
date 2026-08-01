@@ -1,0 +1,19 @@
+rnnoise (0~git20250428.d8ea2b0+ppa2~resolute1) resolute; urgency=medium
+
+  * Drop the unanchored "build" tar-ignore pattern, which would strip any
+    nested build directory from the source tarball. Harmless in this tree,
+    which has none, but it broke telegram-desktop outright.
+  * Test-build the extracted source package rather than the working-tree
+    copy, so this class of packaging defect is caught before upload.
+
+ -- Stanislav Aleksandrov <lightofmysoul@gmail.com>  Sat, 01 Aug 2026 22:30:00 +0000
+
+rnnoise (0~git20250428.d8ea2b0+ppa1~resolute1) resolute; urgency=medium
+
+  * Initial packaging for ppa:lightofmysoul/tg.
+  * Built from desktop-app/rnnoise commit d8ea2b0, the revision pinned by
+    Telegram Desktop v7.0.7 in Telegram/build/prepare/prepare.py.
+  * Adds the pkg-config file upstream does not install, which is how Telegram
+    Desktop locates the library.
+
+ -- Stanislav Aleksandrov <lightofmysoul@gmail.com>  Sat, 01 Aug 2026 19:20:00 +0000

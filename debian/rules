@@ -1,0 +1,17 @@
+#!/usr/bin/make -f
+include /usr/share/dpkg/architecture.mk
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+%:
+	dh $@ --buildsystem=cmake
+
+# Upstream installs a CMake package config but no pkg-config file, while
+# Telegram Desktop looks rnnoise up with
+# pkg_check_modules(DESKTOP_APP_RNNOISE REQUIRED IMPORTED_TARGET rnnoise).
+# Generate the missing .pc rather than patching the consumer.
+override_dh_auto_install:
+	dh_auto_install
+	install -d debian/librnnoise-dev/usr/lib/$(DEB_HOST_MULTIARCH)/pkgconfig
+	sed -e 's|@MULTIARCH@|$(DEB_HOST_MULTIARCH)|' debian/rnnoise.pc.in \
+		> debian/librnnoise-dev/usr/lib/$(DEB_HOST_MULTIARCH)/pkgconfig/rnnoise.pc

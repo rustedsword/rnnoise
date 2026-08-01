@@ -1,0 +1,27 @@
+Source: rnnoise
+Section: libs
+Priority: optional
+Maintainer: Stanislav Aleksandrov <lightofmysoul@gmail.com>
+Build-Depends:
+ cmake,
+ debhelper-compat (= 13),
+Standards-Version: 4.7.3
+Rules-Requires-Root: no
+Homepage: https://github.com/desktop-app/rnnoise
+
+Package: librnnoise-dev
+Section: libdevel
+Architecture: amd64 arm64
+Depends:
+ ${misc:Depends},
+Description: recurrent neural network for audio noise suppression (Telegram fork)
+ RNNoise suppresses background noise in voice calls. This is the desktop-app
+ fork used by Telegram Desktop, which prefixes the library's internal symbols
+ so it can be linked alongside the copy embedded in tg_owt without colliding.
+ .
+ Telegram Desktop requires this via pkg-config and links it unconditionally
+ through tgcalls. Ubuntu ships no rnnoise of its own.
+ .
+ This package provides a static library, its header and a pkg-config file.
+ Upstream installs only a CMake package configuration, so the pkg-config file
+ is generated during packaging.
