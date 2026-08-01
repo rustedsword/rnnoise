@@ -1,1 +1,9 @@
 out/
+build-packages/
+.cache/
+obj-*/
+debian/.debhelper/
+debian/files
+debian/librnnoise-dev/
+debian/*.substvars
+debian/debhelper-build-stamp
